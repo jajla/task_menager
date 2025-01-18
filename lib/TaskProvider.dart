@@ -11,7 +11,7 @@ class TaskProvider with ChangeNotifier {
 
   // Załaduj wszystkie zadania z bazy danych
   Future<void> loadTasks() async {
-    _tasks = await _dbHelper.getTasks();
+   // _tasks = await _dbHelper.getTasks();
     notifyListeners();
   }
 
