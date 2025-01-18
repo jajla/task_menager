@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'database_helper.dart';
 import 'task.dart';
 
-
 class TaskProvider with ChangeNotifier {
   List<Task> _tasks = [];
   final DatabaseHelper _dbHelper = DatabaseHelper();
@@ -11,7 +10,12 @@ class TaskProvider with ChangeNotifier {
 
   // Załaduj wszystkie zadania z bazy danych
   Future<void> loadTasks() async {
-   // _tasks = await _dbHelper.getTasks();
+    // Pobierz zadania jako listę map
+    List<Map<String, dynamic>> taskMaps = await _dbHelper.getTasks();
+
+    // Zamień mapy na obiekty Task
+    _tasks = taskMaps.map((taskMap) => Task.fromMap(taskMap)).toList();
+
     notifyListeners();
   }
 

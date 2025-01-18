@@ -1,11 +1,11 @@
 class Task {
-  final int? id;
-  final String title;
-  final String description;
-  final String category;
-  final String priority;
-  final String dueDate;
-  final String status;
+  int? id;
+  String title;
+  String description;
+  String category;
+  String priority;
+  String dueDate;
+  String status; // completed or pending
 
   Task({
     this.id,
@@ -17,20 +17,6 @@ class Task {
     required this.status,
   });
 
-  // Konwersja z mapy (np. z bazy danych) na obiekt Task
-  factory Task.fromMap(Map<String, dynamic> map) {
-    return Task(
-      id: map['id'],
-      title: map['title'],
-      description: map['description'],
-      category: map['category'],
-      priority: map['priority'],
-      dueDate: map['dueDate'],
-      status: map['status'],
-    );
-  }
-
-  // Konwersja obiektu Task na mapę (np. do zapisania w bazie danych)
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -41,5 +27,17 @@ class Task {
       'dueDate': dueDate,
       'status': status,
     };
+  }
+
+  factory Task.fromMap(Map<String, dynamic> map) {
+    return Task(
+      id: map['id'],
+      title: map['title'],
+      description: map['description'],
+      category: map['category'],
+      priority: map['priority'],
+      dueDate: map['dueDate'],
+      status: map['status'],  // assuming 'status' is a string (completed/pending)
+    );
   }
 }
